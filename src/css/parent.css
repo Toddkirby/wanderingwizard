@@ -1,0 +1,45 @@
+.parent {
+  display: grid;
+}
+div.sticky {
+  position: fixed;
+  width: 10rem;
+  height: 5rem;
+  top: 0;
+  left: 50rem;
+  background-color: skyblue;
+  border: 2px solid #4caf50;
+  border-radius: 15%;
+}
+
+.hp {
+  font-size: large;
+  font-weight: 500;
+  position: relative;
+  top: -15px;
+  left: 10px;
+}
+.moves {
+  font-size: large;
+  font-weight: 500;
+  position: relative;
+  top: -10px;
+  left: 10px;
+}
+
+.gameover {
+  height: max-content;
+  width: max-content;
+  font-size: larger;
+  font-weight: 900;
+  background-color: red;
+  text-align: center;
+}
+
+.goodluck {
+  text-align: center;
+  position: relative;
+  width: min-content;
+  top: -20px;
+  left: 100px;
+}

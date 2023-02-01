@@ -1,0 +1,16 @@
+.player {
+  height: 16px;
+  width: 16px;
+  background-color: green;
+  /* left: 0px;
+  top: 1798px; */
+  position: absolute;
+  z-index: auto;
+}
+.wizard {
+  z-index: inherit;
+  position: absolute;
+  top: -14px;
+  left: 2px;
+  font-size: small;
+}
