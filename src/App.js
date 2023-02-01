@@ -22,7 +22,11 @@ function App() {
     window.addEventListener("keydown", move, false);
   }, []);
   //need a checker for the hp and moves to set the gameover true
-  useEffect(() => {}, [hp, moves, posX, posY]);
+  useEffect(() => {
+    if (hp <= 0 || moves <= 0) {
+      setGameOver(true);
+    }
+  }, [hp, moves]);
   //function to check boundaries and hp/mv cost of the spots on the board
   function checkMove() {
     if (posX >= 0 && posX < 100 && posY >= 0 && posY < 100) {
@@ -47,16 +51,18 @@ function App() {
         setPosX(posX--);
         setPlayerPosition(([x, y]) => [x - 1, y]);
         checkMove();
-        setHp(hp - gameTiles[posX][posY].healthcost);
-        setMoves(moves - gameTiles[posX][posY].movecost);
+        setHp(prevHp => prevHp - gameTiles[posX][posY].healthcost);
+        setMoves(prevMoves => prevMoves - gameTiles[posX][posY].movecost);
+        
         break;
       //up
       case 38:
         setY((y -= 16.98));
         setPosY(posY--);
         setPlayerPosition(([x, y]) => [x, y - 1]);
-        setHp(hp - gameTiles[posX][posY].healthcost);
-        setMoves(moves - gameTiles[posX][posY].movecost);
+        setHp(prevHp => prevHp - gameTiles[posX][posY].healthcost);
+        setMoves(prevMoves => prevMoves - gameTiles[posX][posY].movecost);
+        
         checkMove();
         break;
       //right
@@ -64,8 +70,9 @@ function App() {
         setX((x += 15.98));
         setPosX(posX++);
         setPlayerPosition(([x, y]) => [x + 1, y]);
-        setHp(hp - gameTiles[posX][posY].healthcost);
-        setMoves(moves - gameTiles[posX][posY].movecost);
+        setHp(prevHp => prevHp - gameTiles[posX][posY].healthcost);
+        setMoves(prevMoves => prevMoves - gameTiles[posX][posY].movecost);
+        
         checkMove();
         break;
       //down
@@ -73,8 +80,9 @@ function App() {
         setY((y += 16.98));
         setPosY(posY++);
         setPlayerPosition(([x, y]) => [x, y + 1]);
-        setHp(hp - gameTiles[posX][posY].healthcost);
-        setMoves(moves - gameTiles[posX][posY].movecost);
+        setHp(prevHp => prevHp - gameTiles[posX][posY].healthcost);
+        setMoves(prevMoves => prevMoves - gameTiles[posX][posY].movecost);
+        
         checkMove();
         break;
       default:
@@ -86,8 +94,6 @@ function App() {
     setPlayerPosition([0, 0]);
     setPosX(0);
     setPosY(0);
-    setHp(100);
-    setMoves(150);
     x = 0;
     y = 116;
     setGameOver(false);
